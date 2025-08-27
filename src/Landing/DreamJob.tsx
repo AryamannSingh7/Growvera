@@ -11,7 +11,7 @@ const DreamJob = () => {
             alt="Dream Job Illustration"
             className="w-full max-w-[28rem] lg:max-w-[72rem] h-auto"
           />
-          <div className="hidden lg:flex w-fit p-3 rounded-3xl flex-col gap-4 border-2 border-primary-400 shadow-lg shadow-primary-900 -mt-16 ml-16 backdrop-blur-sm absolute top-[30%] left-[47%]">
+          <div className="hidden items-center lg:flex w-fit p-3 rounded-3xl flex-col gap-4 border-2 border-primary-400 shadow-lg shadow-primary-900 -mt-16 ml-16 backdrop-blur-sm absolute top-[30%] left-[47%]">
             <div className="text-white-200">40k+ success stories.</div>
             <Avatar.Group>
               <Avatar src="img1.jpg" />
@@ -42,10 +42,10 @@ const DreamJob = () => {
         </div>
       </div>
       <div className="flex flex-col w-full lg:w-1/2 leading-tight">
-        <div className="text-3xl sm:text-5xl lg:text-7xl text-white-200 font-bold mb-6 [&>span]:text-primary-400">
+        <div className="text-3xl sm:text-5xl lg:text-7xl text-white-200 font-bold mb-6 [&>span]:text-primary-400 text-center">
           Find Your <span>Dream Job</span> Today.
         </div>
-        <div className="text-base sm:text-lg lg:text-xl text-white-300 mb-6 [&>span]:text-secondary-400">
+        <div className="text-base sm:text-lg lg:text-xl text-white-300 mb-6 [&>span]:text-secondary-400 text-center">
           Discover <span>top opportunities</span>, connect with{" "}
           <span>leading employers</span>, and take the next step in your career
           journey.
