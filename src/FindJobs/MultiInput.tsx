@@ -3,16 +3,17 @@ import {
   Checkbox,
   Combobox,
   Group,
+  Input,
   Pill,
   PillsInput,
   useCombobox,
 } from "@mantine/core";
-import { IconSearch } from "@tabler/icons-react";
+import { IconSelector } from "@tabler/icons-react";
 
 const MultiInput = (props: any) => {
   useEffect(() => {
     setData(props.options);
-  }, []);
+  }, [props.options]);
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -61,6 +62,7 @@ const MultiInput = (props: any) => {
             tabIndex={-1}
             style={{ pointerEvents: "none" }}
             className="text-primary-400"
+            color="primary.4"
           />
           <span>{item}</span>
         </Group>
@@ -77,11 +79,10 @@ const MultiInput = (props: any) => {
         <PillsInput
           onClick={() => combobox.toggleDropdown()}
           variant="unstyled"
-          rightSection={<Combobox.Chevron />}
+          rightSection={<IconSelector />}
           leftSection={
-            <IconSearch className="text-primary-400 bg-white-900 p-3 mr-1 h-12 w-12 rounded-full" />
+            <props.icon className="text-primary-400 bg-white-900 p-1 mr-1 h-8 w-8 rounded-full" />
           }
-          size="lg"
         >
           <Pill.Group>
             {value.length > 0 ? (
@@ -89,37 +90,20 @@ const MultiInput = (props: any) => {
                 {values}
                 {value.length > 1 && <Pill>+{value.length - 1} more</Pill>}
               </>
-            ) : null}
-
-            <Combobox.EventsTarget>
-              <PillsInput.Field
-                onBlur={() => combobox.closeDropdown()}
-                value={search}
-                // Hide placeholder if pills exist or input has text
-                placeholder={
-                  value.length === 0 && search.length === 0
-                    ? "Enter Job Title"
-                    : ""
-                }
-                onChange={(event) => {
-                  combobox.updateSelectedOptionIndex();
-                  setSearch(event.currentTarget.value);
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === "Backspace" && search.length === 0) {
-                    event.preventDefault();
-                    handleValueRemove(value[value.length - 1]);
-                  }
-                }}
-                // Fixed width so input doesn’t expand with text
-                style={{ flex: 1, minWidth: "150px", maxWidth: "150px" }}
-              />
-            </Combobox.EventsTarget>
+            ) : (
+              <Input.Placeholder className="text-lg">
+                {props.title}
+              </Input.Placeholder>
+            )}
           </Pill.Group>
         </PillsInput>
       </Combobox.DropdownTarget>
 
       <Combobox.Dropdown>
+        <Combobox.Search
+          value={search}
+          onChange={(event) => setSearch(event.currentTarget.value)}
+        />
         <Combobox.Options>
           {options}
 
