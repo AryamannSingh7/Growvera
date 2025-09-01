@@ -10,7 +10,7 @@ const Jobs = () => {
         <Sort />
       </div>
       <div className="">
-        <div className="mt-12 flex flex-col md:flex-row items-center flex-wrap justify-between gap-10">
+        <div className="mt-12 flex flex-col md:flex-row items-center flex-wrap justify-center gap-10">
           {jobList.map((job, index) => (
             <JobCard key={index} {...job} />
           ))}

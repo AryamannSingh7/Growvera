@@ -1,9 +1,13 @@
-import { IconBookmark, IconClock } from "@tabler/icons-react";
-import { Divider, Text } from "@mantine/core";
+import {
+  IconBookmark,
+  IconClock,
+  IconLocationCheck,
+} from "@tabler/icons-react";
+import { Button, Divider, Text } from "@mantine/core";
 
 const JobCard = (props: any) => {
   return (
-    <div className="bg-white-900 p-4 w-80 flex flex-col gap-2 rounded-xl hover:shadow-[0_0_5px_1px_yellow] !shadow-primary-400 transition duration-300 ease-in-out hover:cursor-pointer">
+    <div className="bg-white-900 p-4 w-96 flex flex-col gap-2 rounded-xl hover:shadow-[0_0_5px_1px_yellow] !shadow-primary-400 transition duration-300 ease-in-out hover:cursor-pointer">
       <div className="flex gap-2 items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="p-2 bg-white-800 rounded-md">
@@ -36,6 +40,16 @@ const JobCard = (props: any) => {
           days ago
         </div>
       </div>
+
+      <Button
+        rightSection={
+          <IconLocationCheck size={14} className="text-white-900" />
+        }
+        className="!text-white-900 !mt-2 hover:!bg-primary-300 transition duration-300 ease-in-out"
+        color="primary.4"
+      >
+        Apply Now!
+      </Button>
     </div>
   );
 };

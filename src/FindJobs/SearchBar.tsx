@@ -6,13 +6,13 @@ import { useState } from "react";
 const SearchBar = () => {
   const [value, setValue] = useState<[number, number]>([1, 100]);
   return (
-    <div className="flex flex-col md:flex-row px-5 py-8">
+    <div className="flex flex-col md:flex-row px-5 py-8 gap-2">
       {dropdownData.map((data, index) => (
         <>
           <div key={index} className="md:w-1/5 p-2 md:p-0">
             <MultiInput {...data} />
           </div>
-          <Divider size="xs" orientation="vertical" mr="xs" />
+          <Divider size="xs" orientation="vertical" />
         </>
       ))}
       <div className="md:w-1/5 p-2 md:p-0">

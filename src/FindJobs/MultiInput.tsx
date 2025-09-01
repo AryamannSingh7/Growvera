@@ -78,6 +78,7 @@ const MultiInput = (props: any) => {
       <Combobox.DropdownTarget>
         <PillsInput
           onClick={() => combobox.toggleDropdown()}
+          className="w-full bg-white-900 hover:shadow-[0_0_5px_1px_yellow] !shadow-primary-400 transition duration-300 ease-in-out hover:cursor-pointer rounded-2xl"
           variant="unstyled"
           rightSection={<IconSelector />}
           leftSection={
