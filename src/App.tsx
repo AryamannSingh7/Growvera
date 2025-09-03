@@ -9,9 +9,14 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import FindTalents from "./Pages/FindTalents";
 import TalentProfilePage from "./Pages/TalentProfilePage";
+import ListJobPage from "./Pages/ListJobPage";
+import '@mantine/tiptap/styles.css';
 
 function App() {
   const theme = createTheme({
+    focusRing: "never",
+    primaryColor: "primary",
+    primaryShade: 4,
     colors: {
       white: [
         "#ffffff",
@@ -50,6 +55,8 @@ function App() {
           <Route path="/find-jobs" element={<FindJobs />} />
           <Route path="/find-talent" element={<FindTalents />} />
           <Route path="/talent-profile" element={<TalentProfilePage />} />
+          <Route path="/list-job" element={<ListJobPage />} />
+
           <Route path="*" element={<Homepage />} />
         </Routes>
         <Footer />
