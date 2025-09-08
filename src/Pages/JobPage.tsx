@@ -7,7 +7,7 @@ import RecommendedJobs from "../JobDesc/RecommendedJobs";
 const JobPage = () => {
   return (
     <div>
-      <div className="min-h-[100vh] bg-white-950 font-[Montserrat] pb-10">
+      <div className="min-h-[90vh] bg-white-950 font-[Montserrat] pb-10 p-4">
         <Divider size="xs" mx="md" />
         <Link to="/find-jobs" className="my-4 ml-4 inline-block">
           <Button

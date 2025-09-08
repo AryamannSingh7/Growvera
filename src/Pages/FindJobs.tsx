@@ -4,7 +4,7 @@ import Jobs from "../FindJobs/Jobs";
 
 const FindJobs = () => {
   return (
-    <div className="min-h-[100vh] bg-white-950 font-[Montserrat]">
+    <div className="min-h-[90vh] bg-white-950 font-[Montserrat]">
       <Divider size="xs" mx="md" />
       <SearchBar />
       <Divider size="xs" mx="md" />

@@ -44,7 +44,6 @@ const JobCard = (props: any) => {
           days ago
         </div>
       </div>
-
       <Button
         rightSection={
           <IconLocationCheck size={14} className="text-white-900" />
@@ -52,7 +51,7 @@ const JobCard = (props: any) => {
         className="!text-white-900 !mt-2 hover:!bg-primary-300 transition duration-300 ease-in-out"
         color="primary.4"
       >
-        Apply Now!
+        View Job
       </Button>
     </Link>
   );
