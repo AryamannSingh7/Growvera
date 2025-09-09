@@ -29,7 +29,7 @@ const ListJob = () => {
           splitChars={[",", " ", "|"]}
           withAsterisk
         />
-        <div className="[&_button[data-active='true']]:!text-primary-400 [&_button[data-active='true']]:!bg-primary-400/20">
+        <div className="">
           <div className="text-sm font-medium">Job Description</div>
           <TextEditor />
         </div>

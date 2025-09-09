@@ -5,7 +5,7 @@ import CertiCard from "./CertiCard";
 
 const Profile = (props: any) => {
   return (
-    <div className="w-full md:w-2/3">
+    <div className="w-full md:w-3/4">
       <div className="relative">
         <img src="Profile/banner.jpg" alt="banner" className="rounded-t-2xl" />
         <img

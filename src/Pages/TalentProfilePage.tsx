@@ -22,7 +22,7 @@ const TalentProfilePage = () => {
           </Button>
         </Link>
         <Divider size="xs" mx="md" />
-        <div className="flex flex-col md:flex-row gap-5">
+        <div className="flex flex-col md:flex-row gap-5 justify-center">
           <Profile {...profile} />
           <RecommendedTalent />
         </div>
