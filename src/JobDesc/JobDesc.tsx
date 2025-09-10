@@ -1,11 +1,11 @@
 import { ActionIcon, Button, Divider } from "@mantine/core";
-import { IconBookmark, IconLocationCheck } from "@tabler/icons-react";
+import { IconBookmark } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { card, desc, skills } from "../Data/JobDescData";
 //@ts-ignore
 import DOMPurify from "dompurify";
 
-const JobDesc = () => {
+const JobDesc = (props: any) => {
   const data = DOMPurify.sanitize(desc);
   return (
     <div className="w-full md:w-2/3">
@@ -24,16 +24,23 @@ const JobDesc = () => {
         <div className="flex gap-3 items-center">
           <Link to="/apply-job">
             <Button
-              rightSection={
-                <IconLocationCheck size={14} className="text-white-900" />
-              }
               className="!text-white-900 !mt-2 hover:!bg-primary-300 transition duration-300 ease-in-out"
               color="primary.4"
             >
-              Apply Now!
+              {props.edit ? "Edit" : "Apply Now!"}
             </Button>
           </Link>
-          <IconBookmark className="text-primary-400 cursor-pointer" />
+          {props.edit ? (
+            <Button
+              className="!text-red-400 !mt-2 hover:!bg-red-400 transition duration-300 ease-in-out"
+              color="red.5"
+              variant="outline"
+            >
+              Delete
+            </Button>
+          ) : (
+            <IconBookmark className="text-primary-400 cursor-pointer" />
+          )}
         </div>
       </div>
       <Divider my="xl" />

@@ -1,4 +1,5 @@
 import {
+  IconCalendarFilled,
   IconHeart,
   IconLocationCheck,
   IconMapPin,
@@ -59,17 +60,31 @@ const TalentCard = (props: any) => {
             View Profile
           </Button>
         </Link>
-        <Button
-          //   className="!text-white-900 !mt-2 hover:!bg-primary-300 transition duration-300 ease-in-out"
-          color="primary.4"
-          rightSection={
-            <IconLocationCheck size={14} className="text-primary-400" />
-          }
-          variant="light"
-          fullWidth
-        >
-          Message
-        </Button>
+        {props.Listed ? (
+          <Button
+            //   className="!text-white-900 !mt-2 hover:!bg-primary-300 transition duration-300 ease-in-out"
+            color="primary.4"
+            rightSection={
+              <IconCalendarFilled size={14} className="text-primary-400" />
+            }
+            variant="light"
+            fullWidth
+          >
+            Schedule
+          </Button>
+        ) : (
+          <Button
+            //   className="!text-white-900 !mt-2 hover:!bg-primary-300 transition duration-300 ease-in-out"
+            color="primary.4"
+            rightSection={
+              <IconLocationCheck size={14} className="text-primary-400" />
+            }
+            variant="light"
+            fullWidth
+          >
+            Message
+          </Button>
+        )}
       </div>
     </div>
   );
