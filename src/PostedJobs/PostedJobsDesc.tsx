@@ -34,7 +34,14 @@ const PostedApplicantsDesc = () => {
               )}
             </div>
           </Tabs.Panel>
-          <Tabs.Panel value="invited">c</Tabs.Panel>
+          <Tabs.Panel value="invited">
+            <div className="mt-12 flex flex-col md:flex-row flex-wrap justify-evenly gap-10">
+              {talents.map(
+                (talent, index) =>
+                  index < 8 && <TalentCard key={index} {...talent} Invited />
+              )}
+            </div>
+          </Tabs.Panel>
         </Tabs>
       </div>
     </div>

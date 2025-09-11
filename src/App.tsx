@@ -1,5 +1,6 @@
 import "./App.css";
 import { createTheme, MantineProvider } from "@mantine/core";
+import "@mantine/dates/styles.css";
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
 import Homepage from "./Pages/Homepage";

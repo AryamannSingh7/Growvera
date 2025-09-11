@@ -5,10 +5,16 @@ import {
   IconMapPin,
   IconUser,
 } from "@tabler/icons-react";
-import { Button, Divider, Text } from "@mantine/core";
+import { Button, Divider, Modal, Text } from "@mantine/core";
 import { Link } from "react-router-dom";
+import { useDisclosure } from "@mantine/hooks";
+import { useRef, useState } from "react";
+import { DateInput, DateValue, TimeInput } from "@mantine/dates";
 
 const TalentCard = (props: any) => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const [value, setValue] = useState<DateValue>(null);
+  const ref = useRef<HTMLInputElement>(null);
   return (
     <div className="bg-white-900 p-4 w-96 flex flex-col gap-2 rounded-xl hover:shadow-[0_0_5px_1px_yellow] !shadow-primary-400 transition duration-300 ease-in-out hover:cursor-pointer">
       <div className="flex gap-2 items-start justify-between">
@@ -41,38 +47,112 @@ const TalentCard = (props: any) => {
         {props.about}
       </Text>
       <Divider size="xs" color="white.7" />
-      <div className="flex justify-between">
-        <div className=" font-semibold text-primary-400">
-          {props.expectedCtc}
+      {props.Invited ? (
+        <div className="flex gap-1 text-white-200 text-sm items-center">
+          <IconCalendarFilled stroke={1.5} className="text-primary-400" />
+          Interview : September 28, 2025 09:00 AM
         </div>
-        <div className="flex items-center gap-1 text-white-500 text-xs">
-          <IconMapPin stroke={1.5} className="h-5 w-5" /> {props.location}
+      ) : (
+        <div className="flex justify-between">
+          <div className=" font-semibold text-primary-400">
+            {props.expectedCtc}
+          </div>
+          <div className="flex items-center gap-1 text-white-500 text-xs">
+            <IconMapPin stroke={1.5} className="h-5 w-5" /> {props.location}
+          </div>
         </div>
-      </div>
+      )}
+
       <div className="flex [&>*]:w-1/2 [&>*]:p-2] pt-2 gap-4 justify-center">
-        <Link to="/talent-profile">
-          <Button
-            rightSection={<IconUser size={14} className="text-primary-400" />}
-            color="primary.4"
-            variant="outline"
-            fullWidth
-          >
-            View Profile
-          </Button>
-        </Link>
-        {props.Listed ? (
-          <Button
-            //   className="!text-white-900 !mt-2 hover:!bg-primary-300 transition duration-300 ease-in-out"
-            color="primary.4"
-            rightSection={
-              <IconCalendarFilled size={14} className="text-primary-400" />
-            }
-            variant="light"
-            fullWidth
-          >
-            Schedule
-          </Button>
-        ) : (
+        {!props.Invited && (
+          <>
+            <Link to="/talent-profile">
+              <Button
+                rightSection={
+                  <IconUser size={14} className="text-primary-400" />
+                }
+                color="primary.4"
+                variant="outline"
+                fullWidth
+              >
+                View Profile
+              </Button>
+            </Link>
+            {props.Listed ? (
+              <Button
+                //   className="!text-white-900 !mt-2 hover:!bg-primary-300 transition duration-300 ease-in-out"
+                color="primary.4"
+                rightSection={
+                  <IconCalendarFilled size={14} className="text-primary-400" />
+                }
+                variant="light"
+                fullWidth
+                onClick={open}
+              >
+                Schedule
+              </Button>
+            ) : (
+              <Button
+                //   className="!text-white-900 !mt-2 hover:!bg-primary-300 transition duration-300 ease-in-out"
+                color="primary.4"
+                rightSection={
+                  <IconLocationCheck size={14} className="text-primary-400" />
+                }
+                variant="light"
+                fullWidth
+              >
+                Message
+              </Button>
+            )}
+          </>
+        )}
+        {props.Invited && (
+          <>
+            <div>
+              <Button
+                //   className="!text-white-900 !mt-2 hover:!bg-primary-300 transition duration-300 ease-in-out"
+                color="primary.4"
+                variant="outline"
+                fullWidth
+              >
+                Accept
+              </Button>
+            </div>
+            <div>
+              <Button
+                //   className="!text-white-900 !mt-2 hover:!bg-primary-300 transition duration-300 ease-in-out"
+                color="red.4"
+                variant="light"
+                fullWidth
+              >
+                Reject
+              </Button>
+            </div>
+          </>
+        )}
+      </div>
+      <Modal
+        opened={opened}
+        onClose={close}
+        title="Schedule Interview"
+        centered
+      >
+        <div className="flex flex-col gap-6">
+          <DateInput
+            value={value}
+            onChange={setValue}
+            minDate={new Date()}
+            label="Enter Date"
+            placeholder="Date"
+          />
+
+          <TimeInput
+            label="Enter Time"
+            ref={ref}
+            onClick={() => {
+              ref.current?.showPicker();
+            }}
+          />
           <Button
             //   className="!text-white-900 !mt-2 hover:!bg-primary-300 transition duration-300 ease-in-out"
             color="primary.4"
@@ -82,10 +162,10 @@ const TalentCard = (props: any) => {
             variant="light"
             fullWidth
           >
-            Message
+            Schedule
           </Button>
-        )}
-      </div>
+        </div>
+      </Modal>
     </div>
   );
 };
