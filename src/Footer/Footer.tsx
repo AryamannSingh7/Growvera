@@ -5,9 +5,11 @@ import {
   IconBrandLinkedin,
   IconBrandTwitter,
 } from "@tabler/icons-react";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
-  return (
+  const location = useLocation();
+  return location.pathname !== "/signup" && location.pathname !== "/login" ? (
     <footer className="bg-dark-950 text-white-300 py-12 pt-20">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -159,6 +161,8 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+  ) : (
+    <></>
   );
 };
 

@@ -8,12 +8,14 @@ import {
   IconUser,
 } from "@tabler/icons-react";
 import NavLinks from "./NavLinks";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const location = useLocation();
 
-  return (
+  return location.pathname !== "/signup" && location.pathname !== "/login" ? (
     <div className="w-full h-20 bg-dark-950 text-white-100 flex items-center justify-between px-2 sm:px-6 font-semibold flex-wrap relative">
       <div className="flex items-center gap-1 text-2xl">
         <IconAffiliateFilled className="h-10 w-10 text-primary-300 hover:cursor-pointer" />
@@ -107,6 +109,8 @@ const Header = () => {
         )}
       </div>
     </div>
+  ) : (
+    <></>
   );
 };
 
