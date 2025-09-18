@@ -1,4 +1,4 @@
-import { ActionIcon, Divider } from "@mantine/core";
+import { ActionIcon, Divider, TagsInput, Textarea } from "@mantine/core";
 import {
   IconBriefcase,
   IconDeviceFloppy,
@@ -14,6 +14,8 @@ import fields from "../Data/Profile";
 const Profile = (props: any) => {
   const select = fields;
   const [edit, setEdit] = useState([false, false, false, false, false]);
+  const [about, setAbout] = useState(props.about);
+  const [skill, setSkill] = useState(props.skills);
   const handleEdit = (index: any) => {
     const newEdit = [...edit];
     newEdit[index] = !newEdit[index];
@@ -66,26 +68,89 @@ const Profile = (props: any) => {
       </div>
       <Divider my="xl" mx="xs" />
       <div className="p-3">
-        <div className="text-2xl font-semibold mb-3">About</div>
-        <div className="text-white-300 text-justify">{props.about}</div>
-      </div>
-      <Divider my="xl" mx="xs" />
-      <div className="p-3">
-        <div className="text-2xl font-semibold mb-3">Skills</div>
-        <div className="flex flex-wrap gap-2">
-          {props.skills.map((skill: any, index: any) => (
-            <div
-              key={index}
-              className="bg-primary-300 bg-opacity-15 rounded-3xl text-primary-400 px-3 py-1 text-sm font-medium"
-            >
-              {skill}
-            </div>
-          ))}
+        <div className="text-2xl font-semibold mb-3 flex justify-between">
+          About{" "}
+          <ActionIcon
+            variant="subtle"
+            color="yellow.4"
+            size="lg"
+            onClick={() => handleEdit(1)}
+          >
+            {edit[1] ? (
+              <IconDeviceFloppy className="h-20 w-20" stroke={1.5} />
+            ) : (
+              <IconEdit className="h-20 w-20" stroke={1.5} />
+            )}
+          </ActionIcon>
         </div>
+
+        {edit[1] ? (
+          <Textarea
+            value={about}
+            onChange={(event) => setAbout(event.currentTarget.value)}
+            autosize
+            minRows={3}
+            placeholder="Introduce yourself to the corporate leaders."
+          />
+        ) : (
+          <div className="text-white-300 text-justify">{about} </div>
+        )}
       </div>
       <Divider my="xl" mx="xs" />
       <div className="p-3">
-        <div className="text-2xl font-semibold mb-3">Experience</div>
+        <div className="text-2xl font-semibold mb-3 flex justify-between">
+          Skills{" "}
+          <ActionIcon
+            variant="subtle"
+            color="yellow.4"
+            size="lg"
+            onClick={() => handleEdit(2)}
+          >
+            {edit[2] ? (
+              <IconDeviceFloppy className="h-20 w-20" stroke={1.5} />
+            ) : (
+              <IconEdit className="h-20 w-20" stroke={1.5} />
+            )}
+          </ActionIcon>
+        </div>
+
+        {edit[2] ? (
+          <TagsInput
+            placeholder="Add Skill"
+            splitChars={[",", " ", "|"]}
+            value={skill}
+            onChange={setSkill}
+          />
+        ) : (
+          <div className="flex flex-wrap gap-2">
+            {skill.map((skill: any, index: any) => (
+              <div
+                key={index}
+                className="bg-primary-300 bg-opacity-15 rounded-3xl text-primary-400 px-3 py-1 text-sm font-medium"
+              >
+                {skill}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <Divider my="xl" mx="xs" />
+      <div className="p-3">
+        <div className="text-2xl font-semibold mb-3 flex justify-between">
+          Experience{" "}
+          <ActionIcon
+            variant="subtle"
+            color="yellow.4"
+            size="lg"
+            onClick={() => handleEdit(3)}
+          >
+            {edit[3] ? (
+              <IconDeviceFloppy className="h-20 w-20" stroke={1.5} />
+            ) : (
+              <IconEdit className="h-20 w-20" stroke={1.5} />
+            )}
+          </ActionIcon>
+        </div>
         <div className="flex flex-col gap-8">
           {props.experience.map((exp: any, index: any) => (
             <ExpCard {...exp} />
@@ -94,7 +159,21 @@ const Profile = (props: any) => {
       </div>
       <Divider my="xl" mx="xs" />
       <div className="p-3">
-        <div className="text-2xl font-semibold mb-3">Certifications</div>
+        <div className="text-2xl font-semibold mb-3 flex justify-between">
+          Certifications{" "}
+          <ActionIcon
+            variant="subtle"
+            color="yellow.4"
+            size="lg"
+            onClick={() => handleEdit(4)}
+          >
+            {edit[4] ? (
+              <IconDeviceFloppy className="h-20 w-20" stroke={1.5} />
+            ) : (
+              <IconEdit className="h-20 w-20" stroke={1.5} />
+            )}
+          </ActionIcon>
+        </div>
         <div className="flex flex-col gap-8">
           {props.certifications.map((cert: any, index: any) => (
             <CertiCard {...cert} />
