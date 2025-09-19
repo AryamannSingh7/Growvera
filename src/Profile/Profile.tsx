@@ -4,18 +4,23 @@ import {
   IconDeviceFloppy,
   IconEdit,
   IconMapPin,
+  IconPlus,
 } from "@tabler/icons-react";
 import ExpCard from "./ExpCard";
 import CertiCard from "./CertiCard";
 import { useState } from "react";
 import SelectInput from "./SelectInput";
 import fields from "../Data/Profile";
+import ExpInput from "./ExpInput";
+import CertiInput from "./CertiInput";
 
 const Profile = (props: any) => {
   const select = fields;
   const [edit, setEdit] = useState([false, false, false, false, false]);
   const [about, setAbout] = useState(props.about);
   const [skill, setSkill] = useState(props.skills);
+  const [addExp, setAddExp] = useState(false);
+  const [addCerti, setAddCerti] = useState(false);
   const handleEdit = (index: any) => {
     const newEdit = [...edit];
     newEdit[index] = !newEdit[index];
@@ -138,46 +143,68 @@ const Profile = (props: any) => {
       <div className="p-3">
         <div className="text-2xl font-semibold mb-3 flex justify-between">
           Experience{" "}
-          <ActionIcon
-            variant="subtle"
-            color="yellow.4"
-            size="lg"
-            onClick={() => handleEdit(3)}
-          >
-            {edit[3] ? (
-              <IconDeviceFloppy className="h-20 w-20" stroke={1.5} />
-            ) : (
-              <IconEdit className="h-20 w-20" stroke={1.5} />
-            )}
-          </ActionIcon>
+          <div className="flex gap-3">
+            <ActionIcon
+              variant="subtle"
+              color="yellow.4"
+              size="lg"
+              onClick={() => setAddExp(true)}
+            >
+              <IconPlus className="h-20 w-20 " stroke={1.5} />
+            </ActionIcon>
+            <ActionIcon
+              variant="subtle"
+              color="yellow.4"
+              size="lg"
+              onClick={() => handleEdit(3)}
+            >
+              {edit[3] ? (
+                <IconDeviceFloppy className="h-20 w-20" stroke={1.5} />
+              ) : (
+                <IconEdit className="h-20 w-20" stroke={1.5} />
+              )}
+            </ActionIcon>
+          </div>
         </div>
         <div className="flex flex-col gap-8">
           {props.experience.map((exp: any, index: any) => (
-            <ExpCard {...exp} />
+            <ExpCard {...exp} edit={edit[3]} />
           ))}
+          {addExp && <ExpInput add setEdit={setAddExp} />}
         </div>
       </div>
       <Divider my="xl" mx="xs" />
       <div className="p-3">
         <div className="text-2xl font-semibold mb-3 flex justify-between">
           Certifications{" "}
-          <ActionIcon
-            variant="subtle"
-            color="yellow.4"
-            size="lg"
-            onClick={() => handleEdit(4)}
-          >
-            {edit[4] ? (
-              <IconDeviceFloppy className="h-20 w-20" stroke={1.5} />
-            ) : (
-              <IconEdit className="h-20 w-20" stroke={1.5} />
-            )}
-          </ActionIcon>
+          <div className="flex gap-3">
+            <ActionIcon
+              variant="subtle"
+              color="yellow.4"
+              size="lg"
+              onClick={() => setAddCerti(true)}
+            >
+              <IconPlus className="h-20 w-20 " stroke={1.5} />
+            </ActionIcon>
+            <ActionIcon
+              variant="subtle"
+              color="yellow.4"
+              size="lg"
+              onClick={() => handleEdit(4)}
+            >
+              {edit[4] ? (
+                <IconDeviceFloppy className="h-20 w-20" stroke={1.5} />
+              ) : (
+                <IconEdit className="h-20 w-20" stroke={1.5} />
+              )}
+            </ActionIcon>
+          </div>
         </div>
         <div className="flex flex-col gap-8">
           {props.certifications.map((cert: any, index: any) => (
-            <CertiCard {...cert} />
+            <CertiCard {...cert} edit={edit[4]} key={index} />
           ))}
+          {addCerti && <CertiInput setEdit={setAddCerti} />}
         </div>
       </div>
     </div>

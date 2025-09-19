@@ -1,5 +1,10 @@
+import { Button } from "@mantine/core";
+import { useState } from "react";
+import ExpInput from "./ExpInput";
+
 const ExpCard = (props: any) => {
-  return (
+  const [edit, setEdit] = useState(false);
+  return !edit ? (
     <div className="flex flex-col gap-2">
       <div className="flex gap-2 items-center justify-between">
         <div className="flex items-center gap-4">
@@ -20,7 +25,23 @@ const ExpCard = (props: any) => {
       <div className="text-sm text-white-300 text-justify">
         {props.description}
       </div>
+      {props.edit && (
+        <div className="flex gap-3">
+          <Button
+            color="primary.4"
+            variant="outline"
+            onClick={() => setEdit(true)}
+          >
+            Edit
+          </Button>
+          <Button color="red.4" variant="light">
+            Delete
+          </Button>
+        </div>
+      )}
     </div>
+  ) : (
+    <ExpInput {...props} setEdit={setEdit} />
   );
 };
 
